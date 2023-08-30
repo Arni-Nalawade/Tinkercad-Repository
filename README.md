@@ -8,16 +8,16 @@ Below I have provided descriptions for each project
 
 **Description**
 
-A placeholder
+A program which turns on a different frequency LED light based on the temperature of the system
 
 <!---                                                                                                                                              Analog input and functions --->
 
-## Arduino assignment
+## Arduino Lights
 ![Arduino Assignment](https://github.com/Arni-Nalawade/Tinkercad-Repository/assets/76570969/5a862feb-64d7-49fe-9579-595ea6198f77)
 
 **Description**
 
-A placeholder
+My first Arduino project which makes different Led patterns based on how the buttons are pressed.
 
 <!---                                                                                                                                              Arduino assignment --->
 
@@ -26,7 +26,7 @@ A placeholder
 
 **Description**
 
-A placeholder
+My first Arduino project
 
 <!---                                                                                                                                               Arduino starter --->
 
@@ -35,17 +35,17 @@ A placeholder
 
 **Description**
 
-A placeholder
+An arduino system for making a changing neo-pixel setup for your room or PC.
 
 <!---                                                                                                                                               Automated room design --->
 
-## Blinker assignment
+## Biker assignment
 ![Biker Assignment](https://github.com/Arni-Nalawade/Tinkercad-Repository/assets/76570969/99257ea9-6c4c-4faf-8aa3-4fa12d8e6110)
 
 
 **Description**
 
-A placeholder
+A project which can be used on a bicycle to indicate turns and braking based on button/brake press
 
 <!---                                                                                                                                               Blinker assignment --->
 
@@ -55,7 +55,7 @@ A placeholder
 
 **Description**
 
-A placeholder
+An automatic hands-free handsanitizer dispenser which makes use of ultrasonic sensor to detect hands and a servo to dispense sanitizer
 
 <!---                                                                                                                                               Hand sanitizer program --->
 
@@ -66,25 +66,16 @@ A placeholder
 
 **Description**
 
-A placeholder
+An arduino which uses a light sensor to sense ambient light and dim/brighten the hallway lights to ensure maximum savings
 
 <!---                                                                                                                                               Hotel lighting --->
-
-## Neopixel
-![circuit](https://github.com/Arni-Nalawade/Tinkercad-Repository/assets/76570969/7b45e95e-8baa-49fd-91b5-1a7561914443)
-
-**Description**
-
-A placeholder
-
-<!---                                                                                                                                               Neopixel                                  CHANGE MY NAME! --->
 
 ## People counter circuit
 ![People Counter Circuit](https://github.com/Arni-Nalawade/Tinkercad-Repository/assets/76570969/1c26a3c8-f0db-43d2-a538-13332363be14)
 
 **Description**
 
-A placeholder
+A store social distancing program which senses the amount of people entering and leaving the store and calculates the number of people in store. It uses an LCD screen to display if the next person can enter the store or if they have to wait.
 
 <!---                                                                                                                                               People counter circuit --->
 
@@ -93,25 +84,17 @@ A placeholder
 
 **Description**
 
-A placeholder
+A program which uses AC current to create cool LED patterns
 
 <!---                                                                                                                                               Schematic Circuits 1 --->
 
-## Schematic Circuits 2
-![Schematic circuit](https://github.com/Arni-Nalawade/Tinkercad-Repository/assets/76570969/bc939abf-753c-4bbf-8694-b24f57ee8bfb)
-
-**Description**
-
-A placeholder
-
-<!---                                                                                                                                               Schematic Circuits 2 --->
 
 ## Starter breadboard
 ![Starter Breadboard](https://github.com/Arni-Nalawade/Tinkercad-Repository/assets/76570969/8fd89944-b376-416f-9eb9-a9f2cc455c32)
 
 **Description**
 
-A placeholder
+An experiment with using all the different Arduino sensors
 
 <!---                                                                                                                                               Starter breadboard --->
 
@@ -120,6 +103,5 @@ A placeholder
 
 **Description**
 
-A placeholder
-
+An experiment in coding momentary, on and off, toggle and multifunction switches
 <!---                                                                                                                                               Switch circuits --->
