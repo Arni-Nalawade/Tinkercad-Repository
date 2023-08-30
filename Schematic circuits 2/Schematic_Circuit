@@ -1,0 +1,76 @@
+#include <Adafruit_NeoPixel.h>
+
+#define PIN 2	 // input pin Neopixel is attached to
+
+#define NUMPIXELS      32 // number of neopixels in Ring
+Adafruit_NeoPixel colourmix = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+//Software Constants
+int R1;
+int R2;
+int G1;
+int G2;
+int Blue;
+int Bluecolor;
+
+void setup()
+{
+  colourmix.begin();  
+}
+
+void loop()
+{
+   if (R1 < 255 && R2 < 255)
+   {
+     int counter = 0;
+     for (int i = 0; i < 8; i++)
+          {
+            colourmix.setPixelColor(i, colourmix.Color(R1,G1,Blue));
+            colourmix.show();
+            delay (20);
+            counter ++;
+          }
+          
+          for (int j = 24; j < 32; j++)
+          {
+            colourmix.setPixelColor(j, colourmix.Color(R2,G2,Bluecolor));
+            colourmix.show();
+            delay (20);
+            counter ++;
+          }
+          
+          for (int k = 8; k < 24; k++)
+          {
+            int R3 = R1 + R2;
+            int G3 = G1 + G2;
+            int B3 = Blue + Bluecolor;
+            colourmix.setPixelColor(k, colourmix.Color(R3,G3,B3));
+            colourmix.show();
+            delay (20);
+            counter ++;
+          }
+               
+               
+     if (counter % 3 == 0)
+     {               
+      R1 = R1 + 1;
+      G1 = G1 + 1;
+      Blue = Blue + 1;
+      R2 = R2 + 1;
+      G2 = G2 + 1;
+      Bluecolor = Bluecolor + 1;
+     }
+   }
+   
+ 
+  if (R1 > 255 || R2 > 255)
+  {
+    R1 = 0;
+    R2 = 0;
+    G1 = 0;
+    G2 = 0;
+    Blue = 0;
+    Bluecolor = 0;
+  }
+}
+  

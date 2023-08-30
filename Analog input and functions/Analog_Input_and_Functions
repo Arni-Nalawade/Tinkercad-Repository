@@ -1,0 +1,58 @@
+// Hardware Constants
+const int tempSensor = A0;
+const int button = 11;
+const int led1 = 2;
+const int led2 = 3;
+const int led3 = 4;
+const int led4 = 5;
+const int led5 = 6;
+
+// Software Variables
+int tempValue;
+int buttonState;
+
+void setup()
+{
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
+  pinMode(led5, OUTPUT);
+  pinMode(button, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  tempValue = analogRead(tempSensor);
+  Serial.println(tempValue);
+  
+  digitalWrite(led1, LOW);
+  digitalWrite(led2, LOW);
+  digitalWrite(led3, LOW);
+  digitalWrite(led4, LOW);
+  digitalWrite(led5, LOW);
+  
+  if (tempValue < 104)
+  {
+    digitalWrite(led1, HIGH);
+  }
+  else if (tempValue < 124)
+  {
+    digitalWrite(led2, HIGH);
+  }
+  else if (tempValue < 145)
+  {
+    digitalWrite(led3, HIGH);
+  }
+  else if (tempValue < 166)
+  {
+    digitalWrite(led4, HIGH);
+  }
+  else
+  {
+    digitalWrite(led5, HIGH);
+  }
+  
+  delay(200); // 5 readings/second
+}

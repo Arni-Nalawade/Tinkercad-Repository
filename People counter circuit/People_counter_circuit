@@ -1,0 +1,183 @@
+#include <LiquidCrystal.h>
+#include <Adafruit_NeoPixel.h>
+
+#define PIN 6	 // input pin Neopixel is attached to
+
+#define NUMPIXELS      4 // number of neopixels in Ring
+
+Adafruit_NeoPixel limit = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+// Hardware Constants
+const int enterSensor = 9;
+const int exitSensor = 8;
+const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+// Software Variable
+int enterState;
+int exitState;
+int peopleCount = -1;
+
+void setup()
+{
+  limit.begin(); // Initializes the NeoPixel library.
+//  Serial.begin(9600);
+  pinMode(enterSensor, INPUT);
+  pinMode(exitSensor, INPUT);
+   // set up the LCD's number of columns and rows:
+  lcd.begin(16, 2);
+}
+
+void loop()
+{
+  enterState = digitalRead(enterSensor);
+  exitState = digitalRead(exitSensor);
+  
+  if (peopleCount < 3)
+  {
+    lcd.print ("ENTER");
+    delay (10);
+    lcd.clear();
+
+  }
+  
+  if (peopleCount == 3)
+  {
+    lcd.print ("WAIT");
+    delay(150);
+    lcd.clear();
+  }
+
+  while (peopleCount < -1)
+  {
+    peopleCount=peopleCount +1;
+  }
+  
+  if (peopleCount > 3)
+  {
+    lcd.print ("PLEASE WAIT");
+    delay (150);
+    lcd.clear();
+    for (int j=0; j<4; j++)
+      {
+        limit.setPixelColor(j, limit.Color(200,0,100));
+        limit.show();
+        delay(10);
+      }
+  }
+  
+  if (peopleCount==-1 && enterState == LOW && exitState == LOW)
+  {
+    for (int j=0; j<4; j++)
+      {
+        limit.setPixelColor(j, limit.Color(0,200,0));
+        limit.show();
+        delay(10);
+      }
+  }
+  
+  if (enterState == HIGH && exitState == HIGH)
+  {
+     while (enterState == HIGH && exitState == HIGH)
+    {
+       enterState = digitalRead(enterSensor);
+       exitState = digitalRead(exitSensor);
+        if (peopleCount == -1)
+        { 
+          for (int j=0; j<4; j++)
+           {
+        	limit.setPixelColor(j, limit.Color(0,200,0));
+        	limit.show();
+        	delay(10);
+      	   }
+        }
+       else
+       {
+      for (int i = 0; i<=peopleCount; i++)
+       {
+         int rem = peopleCount + 1;
+         for (;rem<=4;rem++)
+         {     
+           limit.setPixelColor(rem, limit.Color(0,200,0));
+           limit.show();
+           delay(10);
+         }
+         limit.setPixelColor(i, limit.Color(200,0,0));
+         limit.show();
+         delay(10);
+       }
+       }
+     }
+  }
+    
+  if (enterState == HIGH && exitState == LOW)
+  { 
+     while (enterState == HIGH)
+    {
+      enterState = digitalRead(enterSensor);
+      for (int j=0; j<4; j++)
+      {
+        limit.setPixelColor(j, limit.Color(200,100,0));
+        limit.show();
+        delay(10);
+      }
+    }
+
+    peopleCount= peopleCount + 1;
+    for (int i = 0; i<=peopleCount; i++)
+    {
+      int rem = peopleCount + 1;
+      for (;rem<=4;rem++)
+      {
+        limit.setPixelColor(rem, limit.Color(0,200,0));
+        limit.show();
+        delay(10);
+      }
+      limit.setPixelColor(i, limit.Color(200,0,0));
+      limit.show();
+      delay(10);
+    }
+  }
+  
+   if (exitState == HIGH && enterState == LOW)
+  {
+     while (exitState == HIGH)
+    {
+      exitState = digitalRead(exitSensor);
+      for (int k=0; k<4; k++)
+      {
+        limit.setPixelColor(k, limit.Color(200,100,0));
+        limit.show();
+        delay(10);
+      }
+    }
+     
+     peopleCount= peopleCount - 1;
+    
+    if (peopleCount == -1)
+    { 
+      for (int j=0; j<4; j++)
+      {
+        limit.setPixelColor(j, limit.Color(0,200,0));
+        limit.show();
+        delay(10);
+      }
+    }
+    else
+    { 
+      for (int i = 0; i<=peopleCount; i++)
+      {
+        int rem = peopleCount + 1;
+         for (;rem<=4;rem++)
+         {
+            limit.setPixelColor(rem, limit.Color(0,200,0));
+            limit.show();
+            delay(10);
+         }
+        limit.setPixelColor(i, limit.Color(200,0,0));
+        limit.show();
+        delay(10);
+      }
+    }
+   }
+}

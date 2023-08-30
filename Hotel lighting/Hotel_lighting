@@ -1,0 +1,77 @@
+#include <Adafruit_NeoPixel.h>
+
+#define PIN 9	 // input pin Neopixel is attached to
+
+#define NUMPIXELS      6 // number of neopixels in Ring
+
+Adafruit_NeoPixel bright = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+// Hardware Constants
+const int lightsensor = A0;
+const int over_ride = 6;
+const int automagic = 0;
+const int trip = 1;
+
+// Software Variable
+int lightState;
+unsigned int lightValue;
+int buttonState;
+int mode = automagic;
+
+void setup()
+{
+  bright.begin(); // Initializes the NeoPixel library.
+  Serial.begin(9600);
+  pinMode(lightState, INPUT);
+  pinMode (buttonState,INPUT);
+}
+
+void loop()
+{
+  Serial.println(mode);
+ while (mode == automagic)
+ {
+   automatic ();
+   buttonState = digitalRead (over_ride);
+   if (buttonState == LOW)
+   {
+     mode = trip;
+     if (buttonState == HIGH)
+     {
+       if (buttonState == LOW)
+       {
+         mode = automagic;
+       }
+     }
+     delay (20);
+     while (mode == trip)
+     {
+       manual ();
+       delay (20);
+     }
+   }
+ }
+}
+  
+int automatic ()
+{
+  lightValue = analogRead(lightsensor);
+  lightState= map(lightValue,1023,30,0,255);
+ for (int j=0; j<6; j++)
+      {
+        bright.setPixelColor(j, bright.Color(lightState,lightState,lightState));
+        bright.show();
+        delay(10);
+      }
+}
+  
+int manual ()
+{
+   for (int j=0; j<6; j++)
+      {
+        bright.setPixelColor(j, bright.Color(250,250,250));
+        bright.show();
+        delay(10);
+      }
+}
+

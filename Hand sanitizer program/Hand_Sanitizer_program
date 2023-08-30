@@ -1,0 +1,70 @@
+#include <Servo.h>
+
+// Hardware Constants
+const int pingPin = 3;
+Servo dispenser;
+const int led1 = 10;
+const int led2 = 9;
+
+//Software Constants
+int position;
+int servoposition;
+
+void setup() 
+{
+  dispenser.attach(2, 100, 200);
+  Serial.begin(9600); // Starting Serial Terminal
+}
+
+void loop()
+{
+  boot_servo();
+  delay (20);
+  long duration, inches, cm;
+  pinMode(pingPin, OUTPUT);
+  digitalWrite(pingPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pingPin, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(pingPin, LOW);
+  pinMode(pingPin, INPUT);
+  duration = pulseIn(pingPin, HIGH);
+  inches = microsecondsToInches(duration);
+  cm = microsecondsToCentimeters(duration);
+
+  if (inches > 17 && inches < 50)
+  {
+    dispenser.write (0);
+    delay (20);
+    while (inches > 17 && inches < 50)
+    {
+      duration = pulseIn(pingPin, HIGH);
+      inches = microsecondsToInches(duration);
+      //
+      delay (20);
+    }
+  }
+  if (inches < 17 && inches > 50)
+  {
+    boot_servo();
+  }
+  
+}
+     
+int boot_servo()
+{
+  dispenser.write(180);
+  delay(20);
+} 
+
+long microsecondsToInches(long microseconds) 
+{
+  return microseconds / 74 / 2;
+}
+
+long microsecondsToCentimeters(long microseconds) 
+{
+  return microseconds / 29 / 2;
+}
+
+   

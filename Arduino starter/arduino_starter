@@ -1,0 +1,63 @@
+// Hardware Constants
+const int button = 12;
+const int led1 = 2;
+const int led2 = 3;
+const int led3 = 4;
+const int led4 = 5;
+
+// Software Variable
+int buttonState;
+
+void setup()
+{
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
+  pinMode(button, INPUT);
+}
+
+void loop()
+{
+  buttonState = digitalRead(button);
+  if (buttonState == HIGH)
+  {
+     digitalWrite(led1, LOW);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led2, HIGH);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led3, LOW);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led4, HIGH);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led1, HIGH);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led2, LOW);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led3, HIGH);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led4, LOW);
+    delay(100); // Wait for 100 millisecond(s)
+  }
+ delay(1000); // Wait for 10 millisecond(s)
+  if (buttonState == LOW)
+  {
+    digitalWrite(led1, HIGH);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led2, HIGH);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led3, HIGH);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led4, HIGH);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led1, LOW);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led2, LOW);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led3, LOW);
+    delay(100); // Wait for 100 millisecond(s)
+    digitalWrite(led4, LOW);
+    delay(100); // Wait for 100 millisecond(s)
+  }
+  delay(10); // Wait for 10 millisecond(s)
+}

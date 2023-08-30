@@ -1,0 +1,96 @@
+#include <Adafruit_NeoPixel.h>
+
+#define PIN 4	 // input pin Neopixel is attached to
+
+#define NUMPIXELS      10 // number of neopixels in Ring
+
+Adafruit_NeoPixel blink = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+// Hardware Constants
+const int button = 2;
+const int ledrow1 = 1;
+const int ledrow2 = 0;
+const int ledrow3 = 3;
+
+//Software Constants
+int buttonState;
+int timer;
+int reccur = 0;
+
+void setup()
+{
+  blink.begin();
+  pinMode(ledrow1, OUTPUT);
+  pinMode(ledrow2, OUTPUT);
+  pinMode(ledrow3, OUTPUT);
+  pinMode(buttonState, INPUT);
+}
+
+void loop()
+{
+  multifunction ();
+}
+
+int multifunction ()
+{
+  buttonState = digitalRead(button);
+  if (buttonState == LOW)
+  {
+        int r = random (0,255);
+        int g = random (0,255);
+        int b = random (0,255);
+        uint32_t rand = blink.Color(r, g, b);
+        blink.fill(rand, 0, 10);
+        blink.show();
+        timer = timer + 10;
+        delay (20);
+    
+    if (timer > 100)
+    {
+      digitalWrite(ledrow1,HIGH);
+      delay (1000);
+      digitalWrite(ledrow2,HIGH);
+      delay (1000);
+      digitalWrite(ledrow3,HIGH);
+      delay (1000);
+      timer = 0;
+      digitalWrite(ledrow2,LOW);
+      delay (1000);
+      digitalWrite(ledrow3,LOW);
+      delay (1000);
+      digitalWrite(ledrow1,LOW);
+      delay (1000);
+    }
+  }
+  if (buttonState == HIGH)
+  {
+    if (reccur == 0)
+    {
+      digitalWrite(ledrow2,LOW);
+      delay (10);
+      digitalWrite(ledrow3,LOW);
+      delay (10);
+      digitalWrite(ledrow1,LOW);
+      delay (10);
+      uint32_t blue = blink.Color(50, 100, 150);
+      uint32_t magenta = blink.Color(255,0,255);
+      uint32_t green = blink.Color(0,255,50);
+      blink.fill(blue, 0, 10);
+      blink.show();
+      delay (80);
+      blink.fill(magenta, 0, 10);
+      blink.show();
+      delay (80);
+      blink.fill(green, 0, 10);
+      blink.show();
+      delay (80);
+      }
+    else 
+    {
+      reccur = 0;
+      delay(40);
+      timer = 0;
+    }
+  }
+}
+

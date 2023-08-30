@@ -1,0 +1,213 @@
+
+// Hardware Constants
+const int button1 = 11;
+const int button2 = 12;
+const int led1 = 2;
+const int led2 = 3;
+const int led3 = 4;
+const int led4 = 5;
+const int led5 = 6;
+const int led6 = 7;
+
+// Software Variable
+int button1state;
+int button2state;
+
+void setup()
+{
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(led4, OUTPUT);
+  pinMode(led5, OUTPUT);
+  pinMode(led6, OUTPUT);
+  pinMode(button1, INPUT);
+  pinMode(button2, INPUT);
+}
+
+void loop()
+{
+  button1state = digitalRead(button1);
+  button2state = digitalRead(button2);
+  if (button1state == LOW)
+  {
+   for(int flash = 2; flash < 8; flash ++)
+    {
+      if (flash == 2)
+      {
+        digitalWrite(led1, HIGH);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led2, HIGH);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led3, HIGH);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led4, HIGH);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led5, HIGH);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led6, HIGH);
+        delay(50); // Wait for 50 millisecond(s))
+      }
+      
+      if (flash == 3)
+      {
+        digitalWrite(led6, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led5, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led4, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led3, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led2, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led1, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+      }
+      
+      if (flash == 4)
+      {
+        delay(50); // Wait for 50 millisecond(s)
+        digitalWrite(led1, HIGH);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led2, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led3, HIGH);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led4, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led5, HIGH);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led6, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+      }
+      
+      if (flash == 5)
+      {
+        delay(50); // Wait for 50 millisecond(s)
+        digitalWrite(led6, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led5,HIGH);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led4, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led3, HIGH);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led2, LOW);
+        delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led1, HIGH);
+        delay(50); // Wait for 50 millisecond(s)
+      }
+      
+      if (flash == 6)
+      {
+        delay(50); // Wait for 50 millisecond(s)
+        digitalWrite(led1, HIGH);
+    	digitalWrite(led2, HIGH);
+    	digitalWrite(led3, HIGH);
+         delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led4, LOW);
+    	digitalWrite(led5, LOW);
+    	digitalWrite(led6, LOW);
+         delay(50); // Wait for 50 millisecond(s)
+      }
+      
+      if (flash == 7)
+      {
+        delay(50); // Wait for 50 millisecond(s)
+        digitalWrite(led1, LOW);
+    	digitalWrite(led2, LOW);
+    	digitalWrite(led3, LOW);
+         delay(50); // Wait for 50 millisecond(s)
+    	digitalWrite(led4, HIGH);
+    	digitalWrite(led5, HIGH);
+    	digitalWrite(led6, HIGH);
+         delay(50); // Wait for 50 millisecond(s)
+      }
+      delay(100); // Wait for 100 millisecond(s)
+    }
+  }
+  if (button2state == LOW)
+  {
+    for(int flash = 2; flash < 8; flash ++)
+    {
+      if (flash == 2)
+      {
+        digitalWrite(led1, HIGH);
+    	digitalWrite(led2, HIGH);
+    	digitalWrite(led3, HIGH);
+    	digitalWrite(led4, HIGH);
+    	digitalWrite(led5, HIGH);
+    	digitalWrite(led6, HIGH);
+         delay(10); // Wait for 10 millisecond(s)
+      }
+      
+      if (flash == 3)
+      {
+        digitalWrite(led1, LOW);
+    	digitalWrite(led2, LOW);
+    	digitalWrite(led3, LOW);
+    	digitalWrite(led4, LOW);
+    	digitalWrite(led5, LOW);
+    	digitalWrite(led6, LOW);
+         delay(10); // Wait for 10 millisecond(s)
+      }
+      
+      if (flash == 4)
+      {
+        digitalWrite(led1, HIGH);
+    	digitalWrite(led2, HIGH);
+    	digitalWrite(led3, HIGH);
+    	digitalWrite(led4, HIGH);
+    	digitalWrite(led5, HIGH);
+    	digitalWrite(led6, HIGH);
+         delay(10); // Wait for 10 millisecond(s)
+      }
+      
+      if (flash == 5)
+      {
+        digitalWrite(led1, LOW);
+    	digitalWrite(led2, LOW);
+    	digitalWrite(led3, LOW);
+    	digitalWrite(led4, LOW);
+    	digitalWrite(led5, LOW);
+    	digitalWrite(led6, LOW);
+         delay(10); // Wait for 10 millisecond(s)
+      }
+      
+      if (flash == 6)
+      {
+        digitalWrite(led1, HIGH);
+    	digitalWrite(led2, HIGH);
+    	digitalWrite(led3, HIGH);
+    	digitalWrite(led4, HIGH);
+    	digitalWrite(led5, HIGH);
+    	digitalWrite(led6, HIGH);
+         delay(10); // Wait for 10 millisecond(s)
+      }
+      
+      if (flash == 7)
+      {
+        digitalWrite(led1, LOW);
+    	digitalWrite(led2, LOW);
+    	digitalWrite(led3, LOW);
+    	digitalWrite(led4, LOW);
+    	digitalWrite(led5, LOW);
+    	digitalWrite(led6, LOW);
+         delay(10); // Wait for 10 millisecond(s)
+      }
+      delay(100); // Wait for 100 millisecond(s)
+    }
+  }
+  else
+  {
+    	digitalWrite(led1, LOW);
+    	digitalWrite(led2, LOW);
+    	digitalWrite(led3, LOW);
+    	digitalWrite(led4, LOW);
+    	digitalWrite(led5, LOW);
+    	digitalWrite(led6, LOW);
+  }
+    
+            
+}

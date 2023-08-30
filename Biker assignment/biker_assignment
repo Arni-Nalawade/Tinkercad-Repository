@@ -1,0 +1,91 @@
+#include <Adafruit_NeoPixel.h>
+
+#define PIN 2	 // input pin Neopixel is attached to
+
+#define NUMPIXELS      6 // number of neopixels in Ring
+
+Adafruit_NeoPixel indicate = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+// Hardware Constants
+const int button1 = 11;
+const int button2 = 12;
+const int button3 = 10;
+
+// Software Variable
+int button1state;
+int button2state;
+int button3state;
+
+void setup()
+{
+  indicate.begin(); // Initializes the NeoPixel library.
+//  Serial.begin(9600);
+  pinMode(button1, INPUT);
+  pinMode(button2, INPUT);
+  pinMode(button3, INPUT);
+}
+
+void loop()
+{
+  button1state = digitalRead(button1);
+  button2state = digitalRead(button2);
+  button3state = digitalRead(button3);
+  if (button1state == LOW)
+  {
+    for (int j=0; j<3; j++)
+    {
+      for(int i=NUMPIXELS;i>=0;i--)
+      {
+        indicate.setPixelColor(i, indicate.Color(200,100,0));
+        indicate.show();
+        delay(80);
+      }
+      for(int i=NUMPIXELS;i>=0;i--)
+      {
+        indicate.setPixelColor(i, indicate.Color(0,0,0));
+        indicate.show();
+        delay(80);
+      }
+      delay(40);
+    }
+  }
+  if (button2state == LOW)
+  {
+    for (int j=0; j<3; j++)
+    {
+      for(int i=0;i<NUMPIXELS;i++)
+      {
+        indicate.setPixelColor(i, indicate.Color(200,100,0));
+        indicate.show();
+        delay(80);
+      }
+      for(int i=0;i<NUMPIXELS;i++)
+      {
+        indicate.setPixelColor(i, indicate.Color(0,0,0));
+        indicate.show();
+        delay(80);
+      }
+      delay(40);
+    }
+  }
+  if (button3state == LOW)
+  { 
+    for(int i=0;i<NUMPIXELS;i++)
+      {
+        indicate.setPixelColor(i, indicate.Color(200,0,0));
+        indicate.show();
+      }
+  }
+delay(50);
+}
+
+
+
+ 
+  
+
+
+
+
+
+

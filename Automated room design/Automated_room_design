@@ -1,0 +1,44 @@
+#include <Adafruit_NeoPixel.h>
+#define PIN 2	 // input pin Neopixel is attached to
+
+#define NUMPIXELS      22 // number of neopixels in Ring
+
+Adafruit_NeoPixel room = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+//Hardware Constants
+
+
+//Software Constants
+int redColor = 0;
+int greenColor = 0;
+int blueColor = 0;
+
+
+void setup ()
+{
+  room.begin(); // Initializes the NeoPixel library.
+}
+
+void loop ()
+{
+  int i;
+      setColor();
+      for( i=0;i<NUMPIXELS;i++)
+      {
+        room.setPixelColor(i, room.Color(redColor, greenColor, blueColor)); // Moderately bright green color.
+        room.show();
+      }
+      if (i == NUMPIXELS)
+      {
+        i = 0; 
+        setColor();
+      }
+}
+
+void setColor()
+{
+  redColor = random(0, 255);
+  greenColor = random(0,255);
+  blueColor = random(0, 255);
+}
+
